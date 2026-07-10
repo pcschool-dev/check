@@ -63,7 +63,7 @@
         </h4>
     </div>
 	
-    <!-- <iframe style="display:none" id="link"  enctype="multipart/form-data" scrolling="auto"  src="https://script.google.com/a/macros/pcschool.ac.th/s/AKfycbxARD862gr06jq9BuGVhczMjUp1WU80F-2ird-Fb5-wHChV1FXSwBC2_PLl0s8cYOlr/exec"></iframe> -->
+    <iframe style="display:none" id="link"  enctype="multipart/form-data" scrolling="auto" src=""></iframe>
 	
     <script type="text/javascript">
         let preloader = document.getElementById("loading");
@@ -100,11 +100,18 @@
         
         } else {
             let finalUrl = idApply ? getNoCacheUrl(baseAppScript, `?id=${idApply}`) : getNoCacheUrl(baseAppScript);
+			link.src = finalUrl;
+            
+            link.onload = function() {
+				preloader.style.display = 'none';
+				link.style.display = 'block';
+            };
             // นำทางทั้งหน้าไปยัง Apps Script แทนการฝังใน iframe
             // เพื่อเลี่ยงข้อจำกัด X-Frame-Options: SAMEORIGIN ของ script.google.com
-            setTimeout(function () {
-                window.location.replace(finalUrl);
-            }, 2000); // ปรับเวลาหน่วง (มิลลิวินาที) ได้ตามต้องการ
+			
+            // setTimeout(function () {
+            //     window.location.replace(finalUrl);
+            // }, 2000); // ปรับเวลาหน่วง (มิลลิวินาที) ได้ตามต้องการ
         }
     </script>
 </body>    
